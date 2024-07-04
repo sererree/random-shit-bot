@@ -1,18 +1,17 @@
-from aiogram import Bot, Dispatcher
+from aiogram import Dispatcher
+
+from src.routes import send_quotes
 from routes import router
 import asyncio
-import os
-import dotenv
-from aiogram.client.default import DefaultBotProperties
-from aiogram.enums import ParseMode
-from routes import start
-async def main() -> None:
-    dotenv.load_dotenv()
-    token = os.getenv("BOT_TOKEN")
-    bot = Bot(token, default=DefaultBotProperties(parse_mode=ParseMode.HTML))
 
+from bot import bot
+
+
+async def main() -> None:
     dp = Dispatcher()
     dp.include_router(router)
+
+    dp.startup.register(send_quotes.send_to_all_users)
 
     await dp.start_polling(bot)
 
