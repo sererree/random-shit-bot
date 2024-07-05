@@ -13,5 +13,6 @@ router = Router()
 
 @router.message(CommandStart())
 async def command_start(message: Message) -> None:
-    local.add_user(message.from_user.id, False)
     await menu.show_menu(message)
+    local.add_user(message.from_user.id, False)
+

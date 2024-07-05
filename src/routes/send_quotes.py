@@ -26,16 +26,16 @@ async def send_to_all_users() -> None:
     while True:
         print("Начинаю рассылку!")
 
-        for user_id, data in local.users().items():
-            print(f"Проверяю пользователя {user_id}")
+        for users, data in local.users().items():
+            print(f"Проверяю пользователя {users}")
             subscribed = data["subscribed"]
 
             if subscribed:
                 quote = get_rand_quote()
                 print(f"Отправляю этому пользователю цитату {quote}")
-                await bot.send_message(chat_id=user_id, text=quote)
+                await bot.send_message(chat_id=users, text=quote)
 
-        await asyncio.sleep(15)
+        await asyncio.sleep(120)
 
 
 @router.callback_query(F.data == "send_quotes")

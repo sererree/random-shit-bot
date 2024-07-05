@@ -9,7 +9,7 @@ router = Router()
 async def show_menu(message: Message) -> None:
     keyboard = [
         [InlineKeyboardButton(text="хочу цитату", callback_data="quote")],
-        [InlineKeyboardButton(text="хочу добавить цитату", callback_data="new_quote")],
+        #[InlineKeyboardButton(text="хочу добавить цитату", callback_data="new_quote")],
         [InlineKeyboardButton(text='хочу получать цитаты', callback_data="send_quotes")]
     ]
     markup = InlineKeyboardMarkup(inline_keyboard=keyboard)
